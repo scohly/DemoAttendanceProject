@@ -1,10 +1,24 @@
 package com.example.demo.member;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
 //this member class is basically our member object
 //will have id, name, attendance date, integer age, UID (db number)
+
+@Entity     //for hibernate
+@Table      //for table in db
 public class Member {
+    @Id
+    @SequenceGenerator(
+            name = "member_sequence",
+            sequenceName = "member_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "member_sequence"
+    )
     private Long id;
     private String name;
     private String email;

@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.member.Member;
+import com.example.demo.service.ServiceLayer;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,13 +15,17 @@ import java.util.List;
 @RequestMapping(path = "api/v1/member")
 public class Controller {
 
+    private final ServiceLayer service;
+
+    public Controller(ServiceLayer service){
+        this.service = service;
+    }
+
     //get mapping endpoint
     @GetMapping
     public List<Member> getMembers(){
-        return List.of(
-                new Member(1L, "Soami Cohly", "soami@soami.com","UID1989" , 31,
-                        LocalDate.of(2021,Month.JUNE, 7))
-        );
+        return service.getMembers();
+
     }
 
 }

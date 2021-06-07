@@ -47,6 +47,13 @@ public class Member {
         this.attendanceDate = attendanceDate;
     }
 
+//    public Member(String name, String email, String uid, Integer age) {
+//        this.name = name;
+//        this.email = email;
+//        this.uid = uid;
+//        this.age = age;
+//        this.attendanceDate = getAttendanceDate();
+//    }
     //getters and setters
 
     public Long getId() {

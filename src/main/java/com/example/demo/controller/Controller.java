@@ -2,9 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.member.Member;
 import com.example.demo.service.ServiceLayer;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -27,5 +25,25 @@ public class Controller {
         return service.getMembers();
 
     }
+
+    @PostMapping
+    public void registerNewMember(@RequestBody Member member){
+        service.addNewMember(member);
+    }
+
+    @DeleteMapping(path = "{memberId}")
+    public void deleteMember(@PathVariable("memberId")Long memberId){
+        service.deleteMember(memberId);
+    }
+
+    @PutMapping(path = "{memberId}")
+    public void updateMember(
+            @PathVariable("memberId") Long memberId,
+            @PathVariable(required = false) String name,
+            @PathVariable(required = false) String email){
+
+        service.updateMember(memberId,name,email);
+    }
+    
 
 }
